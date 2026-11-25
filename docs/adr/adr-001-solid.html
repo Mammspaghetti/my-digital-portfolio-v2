@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ADR 1 — SOLID</title>
+  <link rel="stylesheet" href="adr.css">
+</head>
+<body>
+<main>
+  <header class="top">
+    <a href="index.html">← All ADRs</a>
+    <button id="theme" type="button" aria-pressed="false">Dark mode</button>
+  </header>
+  <span class="tag">ADR 1</span>
+  <h1>Every new class respects SOLID</h1>
+  <dl class="meta">
+    <dt>Status</dt><dd>Accepted</dd>
+  </dl>
+
+  <h2>Context</h2>
+  <p>The portfolio is meant to demonstrate software engineering skills, not only to look good. Code structure is part of what a reviewer will read. Classes are expected in places with real behaviour, such as the seasonal background engine.</p>
+
+  <h2>Decision</h2>
+  <p>Every new class must respect the SOLID principles:</p>
+  <ul>
+    <li><strong>S</strong> — a class has a single reason to change.</li>
+    <li><strong>O</strong> — extend behaviour by adding code, not by editing existing classes.</li>
+    <li><strong>L</strong> — subtypes are usable wherever their base type is expected.</li>
+    <li><strong>I</strong> — small, focused interfaces rather than one large contract.</li>
+    <li><strong>D</strong> — depend on abstractions; dependencies are injected.</li>
+  </ul>
+
+  <h2>Consequences</h2>
+  <ul>
+    <li>The project uses <code>erasableSyntaxOnly</code>: no <code>enum</code> and no constructor parameter properties. Declare fields explicitly and use union types.</li>
+    <li>This applies to classes only. React function components and pure functions are not forced into classes.</li>
+    <li>Avoid over-engineering: a simple portfolio does not need an abstraction per file.</li>
+  </ul>
+</main>
+<script src="adr.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ADR 3 — ADR documentation</title>
+  <link rel="stylesheet" href="adr.css">
+</head>
+<body>
+<main>
+  <header class="top">
+    <a href="index.html">← All ADRs</a>
+    <button id="theme" type="button" aria-pressed="false">Dark mode</button>
+  </header>
+  <span class="tag">ADR 3</span>
+  <h1>ADRs are documented as standalone HTML</h1>
+  <dl class="meta">
+    <dt>Status</dt><dd>Accepted</dd>
+  </dl>
+
+  <h2>Context</h2>
+  <p>Architecture decisions need to be readable by someone who has not followed the project, such as a recruiter or an engineering manager, without installing anything.</p>
+
+  <h2>Decision</h2>
+  <p>Each ADR gets its own HTML page in <code>docs/adr/</code>, opened directly in a browser. Pages share <code>adr.css</code> and <code>adr.js</code> and support a dark mode: it follows <code>prefers-color-scheme</code> by default, with a manual toggle remembered in <code>localStorage</code>.</p>
+
+  <h2>Consequences</h2>
+  <ul>
+    <li>A new ADR means a new <code>adr-NNN-slug.html</code> file, a link in <code>index.html</code>, and a line in <code>CLAUDE.md</code>.</li>
+    <li>No build step and no dependency: the files work offline.</li>
+    <li>The files live outside <code>src/</code> and are not part of the Vite bundle. They can be published separately if wanted.</li>
+  </ul>
+</main>
+<script src="adr.js"></script>
+</body>
+</html>

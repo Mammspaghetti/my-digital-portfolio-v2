@@ -10,6 +10,9 @@ Fresh Vite + React + TypeScript template scaffold. `src/App.tsx` is still the de
 
 - **ADR 1 — SOLID:** every new class must respect the SOLID principles (single responsibility, open/closed, Liskov substitution, interface segregation, dependency inversion).
 
+- **ADR 2 — Routing:** use React Router with `BrowserRouter` (clean URLs for Home, Projects and project detail), not hash routing. The site will be deployed online, so the host must rewrite every path to `index.html` (SPA fallback), and the Vite `base` must match the deployment path.
+- **ADR 3 — ADR documentation:** every architecture decision of this kind gets a documentation page in `docs/adr/` as a standalone HTML file with a dark mode (follows `prefers-color-scheme`, with a manual toggle). Keep this list and `docs/adr/index.html` in sync when adding an ADR.
+
 ## Commands
 
 - `npm run dev` — start Vite dev server with HMR
