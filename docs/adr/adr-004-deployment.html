@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ADR 4 — Deployment</title>
+  <link rel="stylesheet" href="adr.css">
+</head>
+<body>
+<main>
+  <header class="top">
+    <a href="index.html">← All ADRs</a>
+    <button id="theme" type="button" aria-pressed="false">Dark mode</button>
+  </header>
+  <span class="tag">ADR 4</span>
+  <h1>Deployment on GitHub Pages</h1>
+  <dl class="meta">
+    <dt>Status</dt><dd>Accepted</dd>
+  </dl>
+
+  <h2>Context</h2>
+  <p>ADR 2 requires an SPA fallback and a Vite <code>base</code> matching the deployment path. The code already lives on GitHub, and the site only needs static hosting.</p>
+
+  <h2>Decision</h2>
+  <p>Deploy <code>dist/</code> to GitHub Pages with a GitHub Actions workflow (<code>.github/workflows/deploy.yml</code>) on every push to <code>main</code>. The build output is never committed.</p>
+
+  <h2>Consequences</h2>
+  <ul>
+    <li>The site is served under <code>/my-digital-portfolio-v2/</code>: Vite <code>base</code> is set to that path and <code>BrowserRouter</code> receives it as <code>basename</code>. The dev server uses the same prefix.</li>
+    <li>GitHub Pages has no rewrite rules: the workflow copies <code>index.html</code> to <code>404.html</code> so deep links such as <code>/projects</code> still load the app. The response status is 404 for those URLs, which is acceptable for a portfolio but not ideal for SEO.</li>
+    <li>With a custom domain at the root, set <code>base</code> back to <code>/</code>.</li>
+    <li>Pages must be enabled once in the repository settings (Settings → Pages → Source: GitHub Actions).</li>
+  </ul>
+</main>
+<script src="adr.js"></script>
+</body>
+</html>
